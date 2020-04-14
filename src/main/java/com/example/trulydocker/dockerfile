@@ -1,0 +1,31 @@
+docker安装: www.imooc.com/article/16448
+
+
+Dockerfile文件
+War包
+from hub.c.163.com/library/tomcat:latest
+COPY jpress.war /usr/local/tomcat/webapps
+
+Jar包
+FROM java:8
+ADD app.jar app.jar
+RUN bash -c 'touch /app.jar'
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+
+Jenkis:
+docker pull registry.cn-hangzhou.aliyuncs.com/imooc/gitlab-ce:latest
+java -jar jenkins.jar --httpPort=8082
+
+
+#!/bin/bash
+GITLAB_DIR=`pwd`
+docker stop gitlab
+docker rm gitlab
+docker run -d -p 8443:443 -p 8080:80 -p 2222:22 --name gitlab -v ${GITLAB_DIR}/config:/etc/gitlab -v ${GITLAB_DIR}/logs:/var/log/gitlab -v ${GITLAB_DIR}/data:/var/opt/gitlab registry.cn-hangzhou.aliyuncs.com/imooc/gitlab-ce
+
+
+
+
+git config --global user.name "TrulyLiang"
+git config --global user.email "truly.liang@qq.com"
