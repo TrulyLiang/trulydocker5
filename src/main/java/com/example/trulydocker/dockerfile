@@ -29,3 +29,7 @@ docker run -d -p 8443:443 -p 8080:80 -p 2222:22 --name gitlab -v ${GITLAB_DIR}/c
 
 git config --global user.name "TrulyLiang"
 git config --global user.email "truly.liang@qq.com"
+
+
+ssh-keygen -t rsa -C "truly docker"
+ssh-keygen -t rsa -C "truly docker” -f ~/.ssh/id_rsa_new
